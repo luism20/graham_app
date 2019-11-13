@@ -1,0 +1,96 @@
+[
+    {
+        "model-name": "Plantilla",
+        "resource-file": "plantillas.json",
+        "table-name": "plantillas"
+    },
+    {
+        "model-name": "Empresa",
+        "resource-file": "empresas.json"
+    },
+    {
+        "model-name": "Ruta",
+        "resource-file": "rutas.json",
+        "table-name": "rutas"
+    },
+    {
+        "model-name": "TipoVehiculo",
+        "resource-file": "tipo_vehiculos.json",
+        "table-name": "tipo_vehiculos"
+    },
+    {
+        "model-name": "Presupuesto",
+        "resource-file": "presupuestos.json",
+        "table-name": "presupuestos"
+    },
+    {
+        "model-name": "Vehiculo",
+        "resource-file": "vehiculos.json",
+        "table-name": "vehiculos"
+    },
+    {
+        "model-name": "Operacione",
+        "resource-file": "operaciones.json",
+        "table-name": "operaciones"
+    },
+    {
+        "model-name": "Coordinadore",
+        "resource-file": "coordinadores.json",
+        "table-name": "coordinadores"
+    },
+    {
+        "model-name": "user",
+        "resource-file": "users.json",
+        "table-name": "users"
+    },
+    {
+        "model-name": "Proveedore",
+        "resource-file": "proveedores.json",
+        "table-name": "proveedores"
+    },
+    {
+        "model-name": "Gasto",
+        "resource-file": "gastos.json",
+        "table-name": "gastos"
+    },
+    {
+        "model-name": "Cabezote",
+        "resource-file": "cabezotes.json",
+        "table-name": "cabezotes"
+    },
+    {
+        "model-name": "CodigoCabezote",
+        "resource-file": "codigo_cabezotes.json",
+        "table-name": "codigo_cabezotes"
+    },
+    {
+        "model-name": "RutaEspecifica",
+        "resource-file": "ruta_especificas.json",
+        "table-name": "ruta_especificas"
+    },
+    {
+        "model-name": "Excusa",
+        "resource-file": "excusas.json",
+        "table-name": "excusas"
+    },
+    {
+        "model-name": "Disponibilidade",
+        "resource-file": "disponibilidades.json",
+        "table-name": "disponibilidades"
+    },
+    {
+        "model-name": "Trailer",
+        "resource-file": "trailers.json",
+        "table-name": "trailers"
+    },
+    {
+        "model-name": "Concepto",
+        "resource-file": "conceptos.json",
+        "table-name": "conceptos"
+    },
+    {
+        "model-name": "Plan",
+        "resource-file": "plans.json",
+        "table-name": "plans"
+    }
+]

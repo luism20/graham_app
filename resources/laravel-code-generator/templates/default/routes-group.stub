@@ -1,0 +1,4 @@
+
+Route::group([[% prefix %]], function () {
+[% routes %]
+});

@@ -1,0 +1,93 @@
+{
+   "id":"8a7a048e6d6ca8a8016d7036aaba3de7",
+   "reference":"1077187529264011",
+   "shortReference":"5328",
+   "createdAt":"2019-09-27T00:54:53.419Z",
+   "type":"DELIVERY",
+   "merchant":{
+      "id":"511875",
+      "name":"La Brasa Roja (C.C Av Chile)",
+      "address":{
+         "formattedAddress":"Calle 72#10",
+         "country":"CO",
+         "state":"BOG",
+         "city":"BOGOTA",
+         "neighborhood":"La Porciuncula",
+         "streetName":"Calle 72#10",
+         "streetNumber":"34",
+         "postalCode":"00000000"
+      },
+      "companyGroup":"CMO"
+   },
+   "payments":[
+      {
+         "name":"T.CR\u00c9DITO - MASTERCARD",
+         "code":"MC",
+         "value":36800,
+         "prepaid":true,
+         "transaction":"5435b0e3-f10c-4218-ae44-333c74288354",
+         "issuer":"T.CR\u00c9DITO - MASTERCARD"
+      },
+      {
+         "name":"Voucher",
+         "code":"VOUCHER",
+         "value":5000,
+         "prepaid":true,
+         "collector":"IFood",
+         "issuer":"Voucher"
+      }
+   ],
+   "customer":{
+      "id":"16457087",
+      "name":"DIANA J. LEON",
+      "phone":"0 - 3014873562",
+      "email":"DIANAJ.LEON@HOTMAIL.COM",
+      "ordersCountOnRestaurant":0
+   },
+   "items":[
+      {
+         "name":"Amo el pollo",
+         "quantity":1,
+         "price":37900,
+         "subItemsPrice":0,
+         "totalPrice":37900,
+         "discount":0,
+         "addition":0,
+         "externalCode":"207588",
+         "subItems":[
+            {
+               "name":"7up",
+               "quantity":1,
+               "price":0,
+               "totalPrice":0,
+               "discount":0,
+               "addition":0,
+               "externalCode":"918004"
+            }
+         ]
+      }
+   ],
+   "subTotal":37900,
+   "totalPrice":41800,
+   "deliveryFee":3900,
+   "deliveryAddress":{
+      "formattedAddress":"CL 103A # 11B - 34",
+      "country":"CO",
+      "state":"CUN",
+      "city":"BOGOTA",
+      "coordinates":{
+         "latitude":4.686798,
+         "longitude":-74.04334
+      },
+      "neighborhood":"Rincon Del Chico",
+      "streetName":"CL 103A # 11B",
+      "streetNumber":"34",
+      "postalCode":"110111459",
+      "reference":"torres de anim 2 apto 307"
+   },
+   "deliveryDateTime":"2019-09-27T01:54:53.419Z",
+   "localizer":{
+      "id":"22028075"
+   },
+   "preparationTimeInSeconds":2095
+}
