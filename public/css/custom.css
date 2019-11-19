@@ -88,3 +88,94 @@ ul.alert li {
 .pointer {
     cursor: pointer;
 }
+
+.setup-body {
+    background-color: rgb(220, 240, 220);
+    min-width: 0;
+    min-height: 0; 
+    color: #33334f;    
+}
+
+.setup-onboarding {
+    text-align: center;
+    width: 100%;
+    display:flex;
+}
+
+.onboarding_wrapper {
+    width: 100%;
+    padding: 0px 25%;
+}
+
+.onboarding_header {
+    text-align: center;
+}
+
+.onboarding_subtitle {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.onboarding_logo {
+    margin-right: 1.5rem;
+}
+
+.onboarding_integration {
+    background-color: white;
+}
+
+.onboarding_connect {
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+    height: 50px;
+    width: 50px;
+    background-color: rgba(96,120,255,.05);
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-size: 18px auto;
+    margin-left: auto;
+    background-image: url("../img/arrow.svg");
+    text-indent: -9999rem;
+}
+
+.onboarding_small {    
+    display: block;    
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .onboarding_wrapper {    
+        padding: 0px 30px;
+    }
+
+    .subtitle {
+        font-size: 80%;
+    }
+
+    .media-content {
+        overflow-x: initial; 
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}

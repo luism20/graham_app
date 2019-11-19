@@ -7,6 +7,8 @@ Route::get('logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 Route::get('login', 'UsersController@login');
+Route::get('setup', 'IntegrationController@index');
+Route::get('setup/excel', 'IntegrationController@excel');
 
 Route::group(['middleware' => ['auth', 'csrf']], function () {
     
