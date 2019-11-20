@@ -13,7 +13,10 @@ Route::get('setup/excel', 'IntegrationController@excel');
 Route::group(['middleware' => ['auth', 'csrf']], function () {
     
     Route::get('/dashboard', 'HomeController@index');
-    Route::get('/importData', 'HomeController@importData');
+    //Route::get('/importData', 'HomeController@importData');
+    //Route::post('/importData', 'HomeController@importDataStore');
+
+    Route::get('/importData', 'IntegrationController@excel');
     Route::post('/importData', 'HomeController@importDataStore');
 
     Route::get('/profitability', 'HomeController@profitability');

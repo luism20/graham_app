@@ -60,7 +60,7 @@
                                       <div class="media-content">
                                         <p class="title is-4">Excel</p>
                                       </div>
-                                      <a class="onboarding_connect" href="excel">Connect</a>
+                                      <a class="onboarding_connect" href="importData">Connect</a>
                                     </div>                                 
                                 </article>
                             </div>

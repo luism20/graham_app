@@ -29,11 +29,21 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $usuarios = \App\User::all();
-        return view('modules/dashboard', [
-            'title' => 'Dashboard',
-            "usuario" => $usuarios
-        ]);
+        if(Auth::user()->onboarding == null && !Auth::user()->isAdmin()) {
+            return view('modules/setup', [
+                'title' => 'Graham Mind Setup'
+            ]); 
+        } else {
+            return view('modules/setup', [
+                'title' => 'Graham Mind '. Auth::user()->onboarding .' Setup'
+            ]);  
+            $usuarios = \App\User::all();
+            return view('modules/dashboard', [
+                'title' => 'Dashboard',
+                "usuario" => $usuarios
+            ]);  
+        }
+        
     }
 
     public function importData(Request $r){
