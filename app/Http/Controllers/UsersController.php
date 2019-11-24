@@ -122,10 +122,17 @@ class UsersController extends Controller {
     }
 
     public function login() {
-        if (Auth::check())
-            return redirect('dashboard');
-        else
+
+        if (Auth::check()) {    
+                
+            if(Auth::user()->onboarding == null && !Auth::user()->isAdmin()) {
+                return redirect('setup'); 
+            } else {            
+                return redirect('dashboard');   
+            } 
+        } else {
             return view('users.login', ['title' => 'Login']);
+        }
     }
 
     public function profileAuth() {

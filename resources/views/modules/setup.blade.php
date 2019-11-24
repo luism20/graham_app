@@ -18,10 +18,10 @@
             <div class="container" style="min-width: 450px">
                 <div class="onboarding_wrapper">
                     <header class="onboarding_header ">
-                    <h1 class="title">Welcome, let's get you set up!</h1>
+                    <h1 class="title">Welcome, let's get you connected!</h1>
                     <div class="onboarding_subtitle" style="padding: 20px;">
                     <p>
-                    First of all, let's connect your data source.
+                    How would you like to connect to your data?
                     
                     <small class="onboarding_small">
                     You can change this later.
@@ -60,7 +60,7 @@
                                       <div class="media-content">
                                         <p class="title is-4">Excel</p>
                                       </div>
-                                      <a class="onboarding_connect" href="importData">Connect</a>
+                                      <a class="onboarding_connect" href="setup/excel">Connect</a>
                                     </div>                                 
                                 </article>
                             </div>

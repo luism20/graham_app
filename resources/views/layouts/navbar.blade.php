@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="{{url('inicio')}}" class="logo">
+    <a href="{{url('dashboard')}}" class="logo">
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg"><img src="{{URL::asset('img/logo.png')}}" class="img-responsive logo"></span>
         <span class="logo-mini"><img src="{{URL::asset('img/icon.png')}}" class="img-responsive logo"></span>

@@ -47,11 +47,5 @@
     </section>
    
 </div>
-@if(Auth::user()->onboarding == null && !Auth::user()->isAdmin())
-    <script>
-        $(document).ready(function(){
-            openModal();
-        });
-    </script>
-@endif
+
 @stop

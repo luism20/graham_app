@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Config;
-use App\Http\Requests;
-use App\User;
-use Illuminate\Http\Request;
-use Cartalyst\Stripe\Stripe;
 use Auth;
+use Redis;
+
+use App\Config;
+use App\User;
+use App\Company;
+use App\Http\Requests;
+
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
+
 use Jackiedo\DotenvEditor\Facades\DotenvEditor;
-use Redis;
+use Cartalyst\Stripe\Stripe;
+
 
 class HomeController extends Controller {
 
@@ -33,10 +39,7 @@ class HomeController extends Controller {
             return view('modules/setup', [
                 'title' => 'Graham Mind Setup'
             ]); 
-        } else {
-            return view('modules/setup', [
-                'title' => 'Graham Mind '. Auth::user()->onboarding .' Setup'
-            ]);  
+        } else {            
             $usuarios = \App\User::all();
             return view('modules/dashboard', [
                 'title' => 'Dashboard',
@@ -76,8 +79,34 @@ class HomeController extends Controller {
             $name = time() . $file->getClientOriginalName();
             $filePath = Auth::id() . '/' . $name;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
-            return ['message' => 'File uploaded successfully'];
+            $excelFile = Storage::url($filePath);
+            $user = User::find(Auth::id());
+            $user->onboarding = $excelFile;
+            $userId = $user->id;
+            $companyName = $user->company;
+            $user->save();
+            $this->createCompany($userId, $companyName, $excelFile);
+            
+            return redirect('dashboard'); 
+            /*return view('modules/dashboard', [
+                'title' => "GrahamMind - Dashboard",
+                "usuario" => $usuarios
+            ]);*/
         }
+    }
+
+    public function createCompany($userId, $companyName, $excelFile = "") {
+        $savedCompany = Company::where('userId', $userId)->where('name', $companyName)->first();
+        if(isset($savedCompany)) {           
+            $savedCompany->excelFile = $excelFile;
+            $savedCompany->save();
+        } else {
+            $company = new Company();
+            $company->userId = $userId;
+            $company->name = $companyName;
+            $company->excelFile = $excelFile;
+            $company->save();
+        }        
     }
 
     public function leverage(){

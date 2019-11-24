@@ -35,8 +35,8 @@
 
                     <div class="tile is-parent">
                                <article class="tile is-child notification onboarding_integration">
-                                <!--
-                    <form role="form" method="post" action="importData" enctype="multipart/form-data">
+                               
+                    <form id="form" role="form" method="post" action="excel/import" enctype="multipart/form-data">
                       <div class="file has-name is-fullwidth">
                         <label class="file-label">
                           <input id="file_input" name="file_input" class="file-input" type="file" onchange="handleFiles(this.files)">
@@ -49,38 +49,16 @@
                             </span>
                           </span>
                           <span id="file-name" class="file-name">
-                            accounting_export.xlsx
                           </span>
                         </label>
                     </div>
+                    <progress class="progress is-success" value="0" max="100" style="margin-top:20px;display:none;">60%</progress>
                     <div class="box-footer" style="margin-top:20px;">
                             @csrf
                             <input type="submit" class="button is-success" value="Submit" />
                         </div>                      
                     </form>
-                  -->
-                  <form role="form" method="post" action="importData" enctype="multipart/form-data">
-                        <div class="box-body">
-                            <div class="form-group {{ $errors->has('file_input') ? 'has-error' : '' }}"">
-                                <label for="file_input">File input</label>
-                                <input type="file" id="file_input" name="file_input">                
-                                <p class="help-block" id="status"></p>
-                            </div>
-                            <div id="progressBar" style="display:none">
-                                <div class="clearfix">
-                                    <span class="pull-left">Uploading</span>
-                                    <small class="pull-right" id="bar">0%</small>
-                                </div>
-                                <div class="progress xs">
-                                    <div class="progress-bar progress-bar-green" id="percent"></div>
-                                </div>
-                            </div>
-                        </div>      
-                        <div class="box-footer">
-                            @csrf
-                            <input type="submit" class="btn btn-success" value="Submit" />
-                        </div>
-                    </form>
+                 
                     <script>
                       $(function() {
                           var bar = $('#bar');
@@ -91,14 +69,14 @@
                               beforeSend: function() {
                                   status.empty();
                                   document.getElementById("progressBar").style.display = "block";
-                                  var percentVal = '0%';
+                                  var percentVal = '0';
                                   bar.html(percentVal);
-                                  percent.css("width", percentVal);
+                                  percent.css("value", percentVal);
                               },
                               uploadProgress: function(event, position, total, percentComplete) {
-                                  var percentVal = percentComplete + '%';
+                                  var percentVal = percentComplete ;
                                   bar.html(percentVal);
-                                  percent.css("width", percentVal);
+                                  percent.css("value", percentVal);
                               },
                               complete: function(xhr) {
                                   var errors = JSON.parse(xhr.responseText);                

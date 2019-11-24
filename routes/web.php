@@ -7,16 +7,35 @@ Route::get('logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 Route::get('login', 'UsersController@login');
-Route::get('setup', 'IntegrationController@index');
-Route::get('setup/excel', 'IntegrationController@excel');
+
 
 Route::group(['middleware' => ['auth', 'csrf']], function () {
     
     Route::get('/dashboard', 'HomeController@index');
+    /*Route::get('/dashboard', function () {
+        if(Auth::user()->onboarding == null && !Auth::user()->isAdmin()) {
+            return view('modules/setup', [
+                'title' => 'Graham Mind Setup'
+            ]); 
+        } else {            
+            $usuarios = \App\User::all();
+            return view('modules/dashboard', [
+                'title' => 'Dashboard',
+                "usuario" => $usuarios
+            ]);  
+        }               
+    });*/
+
+    Route::get('setup', 'IntegrationController@index');
+    Route::get('setup/excel', 'IntegrationController@excel');
+    Route::post('setup/excel/import', 'HomeController@importDataStore');
+
     //Route::get('/importData', 'HomeController@importData');
     //Route::post('/importData', 'HomeController@importDataStore');
 
-    Route::get('/importData', 'IntegrationController@excel');
+    Route::get('/company', 'IntegrationController@company');
+    Route::post('/addCompany', 'CompanyController@store');
+    //Route::get('/importData', 'IntegrationController@excel');
     Route::post('/importData', 'HomeController@importDataStore');
 
     Route::get('/profitability', 'HomeController@profitability');

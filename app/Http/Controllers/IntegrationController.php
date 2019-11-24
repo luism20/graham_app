@@ -43,4 +43,18 @@ class IntegrationController extends Controller {
         ]);
     }
 
+    public function company() {
+        
+        return view('modules/company', [
+            'title' => 'Add a company'
+        ]);
+    }
+
+    public function addCompany() {
+        
+        return view('modules/company', [
+            'title' => 'Add a company'
+        ]);
+    }
+
 }
