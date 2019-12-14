@@ -11,7 +11,37 @@ use Illuminate\Http\Request;
 class MindController extends Controller
 {
 
-    
+    public function postJson($url, $fields) {
+        
+        // build the urlencoded data
+        $payload = json_encode($fields);
+
+        // open connection
+        $ch = curl_init();
+
+        // set the url, number of POST vars, POST data
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));        
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // execute post
+        $result = curl_exec($ch);   
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        // close connection
+        curl_close($ch);
+
+
+        if($http_code == 200) {
+            $data = json_decode($result);
+            return $data; 
+        } else {
+            $data = array("error"=>true, "code"=>$http_code);
+            return $data;
+        }
+    }
 
     /**
      * Display a listing of the resource.
@@ -108,5 +138,22 @@ class MindController extends Controller
     public function mindAppUpdated(Request $request) {
 
     	return $this->mindAppCreated($request);
+    }
+
+    public function test(Request $request) {
+        return $this->initCreateMindApp($request->companyId);
+    }
+
+    public function initCreateMindApp($companyId) {
+        $url = env('MIND_ENGINE_BASE_URL', 'https://qlik-app-mock.herokuapp.com/');
+        $url = $url . 'api/createApp';        
+        
+        // what post fields?
+        $fields = array(           
+           'companyId' => $companyId     
+        );      
+        
+        return $this->postJson($url, $fields);
+             
     }
 }

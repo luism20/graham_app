@@ -36,6 +36,7 @@ class HomeController extends Controller {
 
         // set the url, number of POST vars, POST data
         curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));        
         curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -47,13 +48,12 @@ class HomeController extends Controller {
         // close connection
         curl_close($ch);
 
+
         if($http_code == 200) {
             $data = json_decode($result);
-            $this->access_token =  $data->access_token;
             return $data; 
         } else {
             $data = array("error"=>true, "code"=>$http_code);
-            $this->access_token = null;
             return $data;
         }
     }
@@ -165,29 +165,11 @@ class HomeController extends Controller {
         }        
     }
 
-    public function test(Request $request) {
-        return $this->createMindApp('7');
-    }
 
     public function createMindApp($companyId) {
-        $savedCompany = Company::where('id', $companyId)->first();
-        if(!isset($savedCompany->mainAppId)) {
-            $this->initCreateMindApp($companyId);
-        }
-    }
-
-    private function initCreateMindApp($companyId) {
-        $url = env('MIND_ENGINE_BASE_URL', 'http://qlik_app_moc.herokuapp.com/');
-        $url = $url . 'createApp';
-        
-        
-        // what post fields?
-        $fields = array(           
-           'companyId' => $companyId     
-        );      
-        
-        return $this->postJson($url, $fields);
-             
+        $savedCompany = Company::where('id', $companyId)->first();        
+        $helper = new MindController();
+        $helper->initCreateMindApp($savedCompany->id);        
     }
 
     public function leverage(){

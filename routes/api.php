@@ -18,7 +18,7 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers'], function ($api) {
     $api->post('aplicacion_cambiarClave', 'AppController@setClave');
     $api->post('appCreated', 'MindController@mindAppCreated');
     $api->post('appUpdated', 'MindController@mindAppUpdated');
-    $api->post('test', 'HomeController@mindAppCreated');
+    $api->post('test', 'MindController@test');
 
 });
 
