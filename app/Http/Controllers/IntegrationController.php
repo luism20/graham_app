@@ -57,4 +57,8 @@ class IntegrationController extends Controller {
         ]);
     }
 
+    public function callbackAppCreated(Request $request) {
+        $companyId = $request->get('workerId');
+    } 
+
 }

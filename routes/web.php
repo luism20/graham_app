@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth', 'csrf']], function () {
     Route::get('/leverage', 'HomeController@leverage'); 
 
     Route::get('subscriptions', 'HomeController@subscriptions');
+    Route::get('subscription', 'HomeController@subscription');
     Route::post('withStripe', 'PlansController@withStripe');
     
     Route::get('profile', 'UsersController@profileAuth');

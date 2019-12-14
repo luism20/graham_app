@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Auth;
 use Redis;
 
+use DateTime;
+use DateTimeZone;
+use DateInterval;
+
 use App\Config;
 use App\User;
 use App\Company;
+use App\Subscription;
 use App\Http\Requests;
 
 use Illuminate\Http\Request;
@@ -20,6 +25,38 @@ use Cartalyst\Stripe\Stripe;
 
 
 class HomeController extends Controller {
+
+    public function postJson($url, $fields) {
+        
+        // build the urlencoded data
+        $payload = json_encode($fields);
+
+        // open connection
+        $ch = curl_init();
+
+        // set the url, number of POST vars, POST data
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));        
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // execute post
+        $result = curl_exec($ch);   
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        // close connection
+        curl_close($ch);
+
+        if($http_code == 200) {
+            $data = json_decode($result);
+            $this->access_token =  $data->access_token;
+            return $data; 
+        } else {
+            $data = array("error"=>true, "code"=>$http_code);
+            $this->access_token = null;
+            return $data;
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -85,8 +122,9 @@ class HomeController extends Controller {
             $userId = $user->id;
             $companyName = $user->company;
             $user->save();
-            $this->createCompany($userId, $companyName, $excelFile);
-            
+            $company = $this->createCompany($userId, $companyName, $excelFile);
+            $this->createDefaultSubscription($company->id);
+            $this->createMindApp($company->id);
             return redirect('dashboard'); 
             /*return view('modules/dashboard', [
                 'title' => "GrahamMind - Dashboard",
@@ -100,13 +138,56 @@ class HomeController extends Controller {
         if(isset($savedCompany)) {           
             $savedCompany->excelFile = $excelFile;
             $savedCompany->save();
+            return $savedCompany;
         } else {
             $company = new Company();
             $company->userId = $userId;
             $company->name = $companyName;
             $company->excelFile = $excelFile;
             $company->save();
+            return $company;
         }        
+    }
+
+    public function createDefaultSubscription($companyId) {
+        $savedSubscription = Subscription::where('companyId', $companyId)->first();
+        if(isset($savedSubscription)) {           
+            return $savedSubscription;
+        } else {
+            $dt = new DateTime("now", new DateTimeZone('America/Bogota'));
+            $dt->add(new DateInterval('P14D'));
+            $stripDate =  $dt->format('Y-m-d');
+            $subscription = new Subscription();
+            $subscription->companyId = $companyId;
+            $subscription->trialFinishDate = $stripDate;
+            $subscription->save();
+            return $subscription;
+        }        
+    }
+
+    public function test(Request $request) {
+        return $this->createMindApp('7');
+    }
+
+    public function createMindApp($companyId) {
+        $savedCompany = Company::where('id', $companyId)->first();
+        if(!isset($savedCompany->mainAppId)) {
+            $this->initCreateMindApp($companyId);
+        }
+    }
+
+    private function initCreateMindApp($companyId) {
+        $url = env('MIND_ENGINE_BASE_URL', 'http://qlik_app_moc.herokuapp.com/');
+        $url = $url . 'createApp';
+        
+        
+        // what post fields?
+        $fields = array(           
+           'companyId' => $companyId     
+        );      
+        
+        return $this->postJson($url, $fields);
+             
     }
 
     public function leverage(){
@@ -135,6 +216,24 @@ class HomeController extends Controller {
             'title' => 'Subscriptions',
             'plans' => $plans->data
         ]);        
+    }
+
+    public function subscription(){
+
+        $user = User::find(Auth::id());
+        $userId = $user->id;
+        $companyName = $user->company;
+        $savedCompany = Company::where('userId', $userId)->where('name', $companyName)->first();
+        $companyId = $savedCompany->id;
+        $savedSubscription = Subscription::where('companyId', $companyId)->first();
+
+        $stripe = Stripe::make();
+        $plans = (object) $stripe->plans()->all();
+
+        return \view('modules.accountsubscription', [
+            'title' => 'Subscription',
+            'subscription' => $savedSubscription
+        ]);         
     }
 
      /**

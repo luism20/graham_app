@@ -35,6 +35,18 @@
                     </ul>
                 </li>
 
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-gear-o"></i>
+                        <span class="label label-warning" id="cant_notificaciones"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li>
+                            <a href="{{url('importData')}}" class="btn btn-default btn-flat">Import Data</a>
+                        </li>                        
+                    </ul>
+                </li>
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -43,24 +55,16 @@
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
-                        <li class="user-header" style="height: 80px">
-                            <p>
-                                {{Auth::user()->name}}
-                                <small>{{Auth::user()->updated_at}}</small>
-                            </p>
+                        <li>
+                            <a href="{{url('profile')}}" class="btn btn-default btn-flat">Profile</a>
                         </li>
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                           
-                                <a href="{{url('profile')}}" class="btn btn-default btn-flat">Account</a>
-                           
-                                @if(!Auth::user()->isAdmin())
-                                <a href="{{url('subscriptions')}}" class="btn btn-default btn-flat">Subscription</a>       
-                                <a href="{{url('importData')}}" class="btn btn-default btn-flat">Import Data</a>
-                                @endif
-                                                            
-                                <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Logout</a>
+                        <li>
+                            <a href="{{url('subscription')}}" class="btn btn-default btn-flat">Billing</a>
+                        </li>
                             
+                        <!-- Menu Footer-->
+                        <li>                                                            
+                            <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Logout</a>
                         </li>
                     </ul>
                 </li>

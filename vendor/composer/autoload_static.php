@@ -482,6 +482,8 @@ class ComposerStaticInit77b6661759e26ca23f40fd6e6438247b
 
     public static $classMap = array (
         'App\\Card' => __DIR__ . '/../..' . '/app/Card.php',
+        'App\\Company' => __DIR__ . '/../..' . '/app/Company.php',
+        'App\\CompanyAppLog' => __DIR__ . '/../..' . '/app/CompanyAppLog.php',
         'App\\Config' => __DIR__ . '/../..' . '/app/Config.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -489,8 +491,10 @@ class ComposerStaticInit77b6661759e26ca23f40fd6e6438247b
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
+        'App\\Http\\Controllers\\CompanyController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompanyController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\IntegrationController' => __DIR__ . '/../..' . '/app/Http/Controllers/IntegrationController.php',
         'App\\Http\\Controllers\\PlansController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlansController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
         'App\\Http\\Controllers\\WebApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/WebApiController.php',
@@ -515,6 +519,7 @@ class ComposerStaticInit77b6661759e26ca23f40fd6e6438247b
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Push' => __DIR__ . '/../..' . '/app/Push.php',
         'App\\Rol' => __DIR__ . '/../..' . '/app/Rol.php',
+        'App\\Subscription' => __DIR__ . '/../..' . '/app/Subscription.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Aws\\ACMPCA\\ACMPCAClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/ACMPCA/ACMPCAClient.php',
         'Aws\\ACMPCA\\Exception\\ACMPCAException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/ACMPCA/Exception/ACMPCAException.php',

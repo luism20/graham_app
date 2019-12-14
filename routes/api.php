@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\SubscriptionController;
 
 $api = app('Dingo\Api\Routing\Router');
 
@@ -15,4 +16,18 @@ $api->version('v1', ['namespace' => 'App\Http\Controllers'], function ($api) {
     $api->post('aplicacion_notificaciones', 'AppController@getNotificaciones');
     $api->post('aplicacion_recuperarClave', 'AppController@recuperarClave');
     $api->post('aplicacion_cambiarClave', 'AppController@setClave');
+    $api->post('appCreated', 'MindController@mindAppCreated');
+    $api->post('appUpdated', 'MindController@mindAppUpdated');
+    $api->post('test', 'HomeController@mindAppUpdated');
+
 });
+
+/*
+Route::get('update/', function() {
+	return "hola";
+
+    $helper = new SubscriptionController();
+    $helper->login();
+    $result = $helper->createSubscription();
+    return json_encode($result);
+});*/

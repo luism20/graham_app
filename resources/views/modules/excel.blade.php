@@ -10,8 +10,10 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
     </head>
     <body class="setup-body">
         <section class="section">

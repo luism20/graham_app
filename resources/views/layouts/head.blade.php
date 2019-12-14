@@ -26,6 +26,7 @@
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/spacing.css') }}">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
+        
 
         <script src="{{asset('plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
         <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing&key=AIzaSyB24YFTCfDBM7uEM8z1AU7tIo6ZDpl2ojA"></script>
