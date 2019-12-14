@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Subscription;
+use App\Company;
+
 use Illuminate\Http\Request;
 
 
@@ -90,11 +92,13 @@ class MindController extends Controller
     public function mindAppCreated(Request $request) {
 
     	if(isset($request->companyId)) {
+
 			$companyId = $request->companyId;
 			$mainAppId = $request->mainAppId;
 			$savedCompany = Company::where('id', $companyId)->first();
-	        if(!isset($savedCompany)) {
+	        if(isset($savedCompany)) {
 	            $savedCompany->mainAppId = $mainAppId;
+	            $savedCompany->save();
 	        }
     	}
 
